@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"john@mail.com\",\n    \"password\": \"12345678\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Pantau\"\n}",
+					"raw": "{\n    \"email\": \"john1@mail.com\",\n    \"password\": \"12345678\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Thor\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,7 +54,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"john@mail.com\",\n    \"password\": \"12345678\"\n}",
+					"raw": "{\n    \"email\": \"john1@mail.com\",\n    \"password\": \"12345678\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,12 +89,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/balance",
-					"protocol": "http",
+					"raw": "{{url}}/balance",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"balance"
 					]
@@ -110,7 +108,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AbWFpbC5jb20iLCJpYXQiOjE3MzM1NzgxNTR9.lIe2JzqHXscv065_E1u4F2r_c-UYISIzYKq3uScQAjY",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -119,7 +117,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"top_up_amount\": 10000\n}",
+					"raw": "{\n    \"top_up_amount\": 30000\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,7 +144,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AbWFpbC5jb20iLCJpYXQiOjE3MzM1NzgxNTR9.lIe2JzqHXscv065_E1u4F2r_c-UYISIzYKq3uScQAjY",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -155,7 +153,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"service_code\": \"PLN_PRABAYAR\"\n}",
+					"raw": "{\n    \"service_code\": \"PLN_PRABAYARR\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
