@@ -4,6 +4,11 @@ function errorHandler(err, req, res, next) {
   let customStatus = null;
 
   switch (err.name) {
+    case "EmailAlreadyExist":
+      status = 400;
+      customStatus = 101;
+      message = "Email sudah terdaftar";
+      break;
     case "InvalidToken":
     case "JsonWebTokenError":
       status = 401;

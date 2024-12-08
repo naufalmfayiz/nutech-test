@@ -1,4 +1,5 @@
 const { pool } = require("../config");
+const { hashedPassword, checkPassword } = require("../helper/bcrypt");
 const { createToken } = require("../helper/jwt");
 const loginSchema = require("../validators/login.validator");
 const userSchema = require("../validators/register.validator");
@@ -10,12 +11,25 @@ class Model {
       const { email, first_name, last_name, password } = input;
       userSchema.parse(input);
 
+      const queryCheck = `SELECT * FROM "Users"
+      WHERE email = $1;`;
+      const valuesCheck = [email];
+
+      const result = await pool.query(queryCheck, valuesCheck);
+      if (result.rows.length > 0) {
+        throw {
+          name: "EmailAlreadyExist",
+        };
+      }
+
+      const hashed = hashedPassword(password);
+
       await pool.query("BEGIN;");
 
       const query = `INSERT INTO "Users" (email, first_name, last_name, password, balance) 
       VALUES ($1, $2, $3, $4, $5);`;
 
-      const values = [email, first_name, last_name, password, 0];
+      const values = [email, first_name, last_name, hashed, 0];
 
       await pool.query(query, values);
 
@@ -34,9 +48,8 @@ class Model {
       loginSchema.parse(input);
 
       const query = `SELECT * FROM "Users"
-      WHERE email = $1 AND password = $2;`;
-
-      const values = [email, password];
+      WHERE email = $1;`;
+      const values = [email];
 
       const { rows } = await pool.query(query, values);
       // console.log(rows);
@@ -47,10 +60,16 @@ class Model {
         };
       }
 
+      const comparePassword = checkPassword(password, rows[0].password);
+      if (!comparePassword) {
+        throw { name: "InvalidUser" };
+      }
+
       const token = createToken({ email });
 
       return token;
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
