@@ -23,3 +23,8 @@ jalankan "node migration.js" di terminal
 ## Run Server
 
 jika berhasil migration maka jalankan "npx nodemon app" di terminal
+&nbsp;
+
+## Postman
+
+jika menggunakan postman untuk pengetesan API maka import semua file yang ada di folder Postman-collection
